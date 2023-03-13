@@ -20,6 +20,5 @@ runs:
         GITHUB_PATH: ${{github.path}}
         ACTION_PATH: ${{github.action_path}}
     - run: |
-        cd ${{github.path}}
         node ${{github.action_path}}/dist/index.js
       shell: bash
