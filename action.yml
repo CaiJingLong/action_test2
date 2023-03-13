@@ -1,12 +1,25 @@
-name: 'Your action name'
-description: 'Your action description'
-author: 'Your name or organization here'
-inputs:
-  # You can define multiple inputs
-  github-token:
-    required: true
-    description: 'Github token'
+name: 'action-test-2'
+description: 'Hello'
+author: 'CaiJingLong'
 
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: composite
+  steps:
+    - uses: actions/setup-node@v2
+      if: ${{ steps.check_env.outputs.is_flutter == 'true' }}
+      with:
+        node-version: '16'
+    - run: |
+        echo "action path: ${{github.action_path}}"
+        echo "path: ${{github.path}}"
+        bash ${{github.action_path}}/check-flutter-or-dart.sh
+        node ${{github.action_path}}/dist/check_input.ts
+      id: check_env
+      shell: bash
+      env:
+        GITHUB_PATH: ${{github.path}}
+        ACTION_PATH: ${{github.action_path}}
+    - run: |
+        cd ${{github.path}}
+        node ${{github.action_path}}/dist/index.js
+      shell: bash

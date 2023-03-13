@@ -11,7 +11,8 @@
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
     "test": "jest",
-    "dist": "pnpm run build && pnpm run package",
+    "cp-env": "cp lib/check_input.js dist/check_input.js",
+    "dist": "pnpm run build && pnpm run package && pnpm run cp-env",
     "all": "pnpm lint && pnpm test && pnpm dist"
   },
   "repository": {
@@ -26,7 +27,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0"
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
   },
   "devDependencies": {
     "@jest/globals": "^29.4.3",
