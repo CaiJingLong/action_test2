@@ -5,7 +5,7 @@ author: 'CaiJingLong'
 runs:
   using: composite
   steps:
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       if: ${{ steps.check_env.outputs.is_flutter == 'true' }}
       with:
         node-version: '16'
