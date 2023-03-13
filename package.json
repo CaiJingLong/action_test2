@@ -10,9 +10,10 @@
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
+    "pkg-check": "ncc build lib/check_input.js -o dist/check",
     "test": "jest",
-    "cp-env": "cp lib/check_input.js dist/check_input.js",
-    "dist": "pnpm run build && pnpm run package && pnpm run cp-env",
+    "clean": "rm -rf dist",
+    "dist": "pnpm run build && pnpm run package && pnpm run pkg-check",
     "all": "pnpm lint && pnpm test && pnpm dist"
   },
   "repository": {

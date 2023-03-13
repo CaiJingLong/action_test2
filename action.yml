@@ -13,7 +13,7 @@ runs:
         echo "action path: ${{github.action_path}}"
         echo "path: ${{github.path}}"
         bash ${{github.action_path}}/check-flutter-or-dart.sh
-        node ${{github.action_path}}/dist/check_input.js
+        node ${{github.action_path}}/dist/check/index.js
       id: check_env
       shell: bash
       env:
