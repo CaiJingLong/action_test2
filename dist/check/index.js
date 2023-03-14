@@ -41,6 +41,7 @@ core.info('event: ');
 core.info(jsonStr);
 core.info(`GITHUB_OUTPUT: ${process.env['GITHUB_OUTPUT']}`);
 fs.appendFileSync(process.env['GITHUB_OUTPUT'] || '', '\nINSTALL_DART=1');
+core.info(`code path: ${process.env['GITHUB_ACTION_PATH']}`);
 
 
 /***/ }),
