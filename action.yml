@@ -5,7 +5,7 @@ author: 'CaiJingLong'
 runs:
   using: composite
   steps:
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: '16'
     - run: |
@@ -34,7 +34,7 @@ runs:
       with:
         channel: 'stable'
     - run: |
-        which flutter
-        which dart
+        echo "check flutter: $(which flutter)"
+        echo "check dart: $(which dart)"
       name: 'check flutter or dart'
       shell: bash
