@@ -12,7 +12,8 @@ runs:
         echo "action path: ${{github.action_path}}"
         echo "path: ${{github.path}}"
         bash ${{github.action_path}}/check-flutter-or-dart.sh
-        echo "INSTALL_FLUTTER=1" >> $GITHUB_OUTPUT
+        # echo "INSTALL_FLUTTER=1" >> $GITHUB_OUTPUT
+        # echo "INSTALL_FLUTTER=1" >> $GITHUB_OUTPUT
         node ${{github.action_path}}/dist/check/index.js
       id: check_env
       shell: bash
