@@ -32,12 +32,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(1680));
 const github = __importStar(__nccwpck_require__(1240));
+const fs = __importStar(__nccwpck_require__(7147));
 core.info('Hello from check_input.ts');
 core.info(`action_path: ${process.env['ACTION_PATH']}`);
 core.info(`path: ${process.env['GITHUB_PATH']}`);
 const jsonStr = JSON.stringify(github.context, null, 2);
 core.info('event: ');
 core.info(jsonStr);
+core.info(`GITHUB_OUTPUT: ${process.env['GITHUB_OUTPUT']}`);
+fs.appendFileSync(process.env['GITHUB_OUTPUT'] || '', '\nINSTALL_DART=1');
 
 
 /***/ }),

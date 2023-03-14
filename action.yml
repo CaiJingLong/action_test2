@@ -6,13 +6,13 @@ runs:
   using: composite
   steps:
     - uses: actions/setup-node@v2
-      if: ${{ steps.check_env.outputs.is_flutter == 'true' }}
       with:
         node-version: '16'
     - run: |
         echo "action path: ${{github.action_path}}"
         echo "path: ${{github.path}}"
         bash ${{github.action_path}}/check-flutter-or-dart.sh
+        echo "INSTALL_FLUTTER=1" >> $GITHUB_OUTPUT
         node ${{github.action_path}}/dist/check/index.js
       id: check_env
       shell: bash
@@ -21,5 +21,19 @@ runs:
         ACTION_PATH: ${{github.action_path}}
     - run: |
         echo "pwd: $(pwd)"
+        echo `the last step`
         node ${{github.action_path}}/dist/index.js
+      shell: bash
+    - uses: dart-lang/setup-dart@v1
+      if: steps.check_env.outputs.INSTALL_DART == 1
+      with:
+        channel: 'stable'
+    - uses: subosito/flutter-action@v2
+      if: steps.check_env.outputs.INSTALL_FLUTTER == 1
+      with:
+        channel: 'stable'
+    - run: |
+        which flutter
+        which dart
+      name: 'check flutter or dart'
       shell: bash
